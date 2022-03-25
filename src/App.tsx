@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import './App.css'
+import { Routes, Route } from 'react-router-dom'
+import Users from './components/Users'
+import About from './components/About'
+import TestComponent from './practice/React'
+import { Provider } from 'react-redux'
+import store from './redux/store'
+import Taskify from './components/Taskify'
+import Phantom from './solana/Phantom'
 
-function App() {
+const App: React.FC = (): JSX.Element => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Provider store={store}>
+      <Routes>
+        <Route path="/" element={<Taskify />} />s
+        <Route path="/users" element={<Users />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/react-ts" element={<TestComponent />} />
+        <Route path="/phantom" element={<Phantom />} />
+      </Routes>
+    </Provider>
+  )
 }
 
-export default App;
+export default App
