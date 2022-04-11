@@ -9,13 +9,14 @@
 }
 
 .heading {
-  text-transform: uppercase;
-  font-size: 40px;
+  text-transform: capitalize;
+  font-size: 50px;
   color: white;
   margin: 30px 0;
   z-index: 1;
   text-align: center;
   font-weight: bold;
+  font-family: 'Pacifico', cursive;
 
   @media (max-width: 800px) {
     margin: 15px 0;
@@ -62,6 +63,7 @@
     box-shadow: 0 0 10px black;
     font-weight: bold;
     cursor: pointer;
+    font-size: 16px;
 
     &:hover {
       background-color: #388ae2;
@@ -77,6 +79,7 @@
   margin-top: 10px;
   justify-content: space-between;
   align-items: flex-start;
+  margin-top: 25px;
 
   @media (max-width: 700px) {
     width: 95%;
@@ -88,7 +91,7 @@
     width: 47.5%;
     flex-direction: column;
     padding: 15px;
-    border-radius: 5px;
+    border-radius: 10px;
     background-color: rgb(50, 195, 205);
 
     @media (max-width: 1100px) {
@@ -164,4 +167,58 @@
 
 .drag {
   box-shadow: 0 0 20px black;
+}
+
+@mixin flex-column($bg-color) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: $bg-color;
+}
+
+.flex-test {
+  @include flex-column(red);
+}
+
+@mixin theme-colors($theme) {
+  @if $theme == 'light' {
+    color: black;
+    background-color: white;
+  } @else {
+    color: white;
+    background-color: black;
+  }
+}
+
+$sizes: 10px, 20px, 30px, 40px, 50px;
+
+@each $size in $sizes {
+  .icon-#{$size} {
+    font-size: $size;
+  }
+}
+
+$base-color: green;
+
+.regular-card {
+  background-color: $base-color;
+}
+
+.lighter-card {
+  background-color: lighten($base-color, 25%);
+}
+
+.darker-card {
+  background-color: darken($base-color, 25%);
+}
+
+@function sum($numbers) {
+  $sum: 0;
+
+  @each $number in $numbers {
+    $sum: $sum + $number;
+  }
+
+  @return $sum;
 }
